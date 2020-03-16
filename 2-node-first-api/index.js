@@ -1,18 +1,14 @@
-// Built-in Libraries
-const http = require("http");
+const express = require("express");
+const app = express();
 
-http
-  .createServer((req, res) => {
-    const url = req.url;
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
-    if (url.includes("/now")) {
-      res.write(new Date(Date.now()).toLocaleString());
-      res.end();
-    } else {
-      res.write("Hello World");
-      res.end();
-    }
-  })
-  .listen(3000, () => {
-    console.log("Server started at Port 3000");
-  });
+app.get("/now", (req, res) => {
+  res.send(new Date(Date.now()).toLocaleString());
+});
+
+app.listen(3000, () => {
+  console.log("Server running at port 3000");
+});

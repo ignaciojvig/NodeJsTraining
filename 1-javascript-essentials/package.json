@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/ignaciojvig/NodeJsTraining/issues"
   },
-  "homepage": "https://github.com/ignaciojvig/NodeJsTraining#readme"
+  "homepage": "https://github.com/ignaciojvig/NodeJsTraining#readme",
+  "dependencies": {}
 }
