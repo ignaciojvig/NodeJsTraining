@@ -1,0 +1,23 @@
+{
+  "name": "nodejstraining",
+  "version": "1.0.0",
+  "description": "NodeJs Training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ignaciojvig/NodeJsTraining.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "JavaScript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ignaciojvig/NodeJsTraining/issues"
+  },
+  "homepage": "https://github.com/ignaciojvig/NodeJsTraining#readme"
+}
