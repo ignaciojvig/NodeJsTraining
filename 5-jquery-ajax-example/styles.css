@@ -1,0 +1,18 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#messages {
+  margin-top: 1em;
+  max-height: 20em;
+  overflow: auto;
+}
+
+.messageItem {
+  background-color: lightblue;
+  border: 2px solid lightskyblue;
+  margin: 0.3em 1em;
+  border-radius: 4px;
+}

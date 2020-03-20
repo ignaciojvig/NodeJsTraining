@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { User } from 'src/api/domain/models/user.model';
 import { UserService } from 'src/api/services/user-service/user.service';
-import { UserCreatorViewModel } from 'src/api/domain/view-models/user.creator.viewmodel';
-import { UserUpdaterViewModel } from 'src/api/domain/view-models/user.updater.viewmodel';
+import { UserCreatorViewModel } from 'src/api/domain/view-models/user-view-model/user.creator.viewmodel';
+import { UserUpdaterViewModel } from 'src/api/domain/view-models/user-view-model/user.updater.viewmodel';
 
 @Controller('user')
 export class UserController {

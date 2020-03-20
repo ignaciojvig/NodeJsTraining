@@ -8,8 +8,6 @@ import {
 @Injectable()
 export class QueryParamToNumberPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
-    console.log(metadata);
-
     if (!value) {
       throw new BadRequestException(
         `Param ${metadata.data} cannot be undefined!`,

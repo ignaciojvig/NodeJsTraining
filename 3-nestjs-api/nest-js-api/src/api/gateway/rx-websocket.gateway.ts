@@ -1,25 +1,31 @@
 import {
   SubscribeMessage,
   WebSocketGateway,
-  ConnectedSocket,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Socket } from 'socket.io';
+import { Socket, Server } from 'socket.io';
 
 @WebSocketGateway()
 export class RxWebsocketGateway {
-  @WebSocketServer() server;
+  @WebSocketServer() server: Server;
 
-  @SubscribeMessage('message')
-  handleMessage(client: Socket, payload: any): string {
-    return 'User successfully connected';
+  @SubscribeMessage('new-connection')
+  newUserConnected(client: Socket, userId: number) {
+    this.server.emit(
+      'new-user-connected',
+      `User ${userId} has connected to our Chat!`,
+    );
   }
 
-  handleConnection(@ConnectedSocket() client: Socket) {
-    this.server.emit('A new user has connected');
+  @SubscribeMessage('new-disconnection')
+  newUserDisconnected(client: Socket, userId: number) {
+    this.server.emit(
+      'new-user-disconnected',
+      `User ${userId} has disconnected from our Chat!`,
+    );
   }
 
-  handleDisconnect(@ConnectedSocket() client: Socket) {
-    this.server.emit('An user has disconnected');
+  broadcastNewMessage() {
+    this.server.emit('refresh-messages', true);
   }
 }

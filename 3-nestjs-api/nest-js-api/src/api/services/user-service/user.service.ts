@@ -2,8 +2,8 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/api/domain/models/user.model';
 import { Repository } from 'typeorm';
-import { UserCreatorViewModel } from 'src/api/domain/view-models/user.creator.viewmodel';
-import { UserUpdaterViewModel } from 'src/api/domain/view-models/user.updater.viewmodel';
+import { UserCreatorViewModel } from 'src/api/domain/view-models/user-view-model/user.creator.viewmodel';
+import { UserUpdaterViewModel } from 'src/api/domain/view-models/user-view-model/user.updater.viewmodel';
 
 @Injectable()
 export class UserService {
@@ -14,6 +14,14 @@ export class UserService {
 
   async getAllUsers(): Promise<User[]> {
     return await this.userRepository.find();
+  }
+
+  async getById(id: string): Promise<User> {
+    const userToBeUpdated = await this.userRepository.findOne({
+      where: { id: id },
+    });
+
+    return userToBeUpdated;
   }
 
   async getAllActiveUsers(): Promise<User[]> {
@@ -29,7 +37,7 @@ export class UserService {
   }
 
   async updateUser(updated: UserUpdaterViewModel): Promise<User> {
-    const existingUser = await this.returnExistingUser(updated.id.toString());
+    const existingUser = await this.getById(updated.id.toString());
 
     if (!existingUser) {
       throw new BadRequestException('An user with the given id does not exist');
@@ -39,20 +47,12 @@ export class UserService {
   }
 
   async deleteUser(id: string): Promise<void> {
-    const existingUser = await this.returnExistingUser(id);
+    const existingUser = await this.getById(id);
 
     if (!existingUser) {
       throw new BadRequestException('An user with the given id does not exist');
     }
 
     await this.userRepository.delete(id);
-  }
-
-  private async returnExistingUser(id: string): Promise<User> {
-    const userToBeUpdated = await this.userRepository.findOne({
-      where: { id: id },
-    });
-
-    return userToBeUpdated;
   }
 }

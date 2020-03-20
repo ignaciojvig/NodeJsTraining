@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div
+        class="row"
+        style="height: 80vh; display: flex; overflow-y: auto; align-items: flex-end;"
+      >
+        <span
+          *ngFor="let messageObj of messageList"
+          style="
+            width: 100%;
+            max-height: 2em;
+            overflow-y: auto;
+            background-color: ghostwhite;
+            border-radius: 7px;
+          "
+        >
+          {{ messageObj.message }}
+          {{ messageObj.userId }}
+          {{ messageObj.timestamp }}
+        </span>
+      </div>
+
+      <div
+        class="row"
+        style="
+          margin-top: 0.7em;
+          justify-content: space-between;
+          background-color: ghostwhite;
+          padding: 1em;
+          border-radius: 10px;
+        "
+      >
+        <mat-form-field style="width: 80%">
+          <mat-label> Enter your message </mat-label>
+          <input
+            matInput
+            [formControl]="messageFormControl"
+            placeholder="Ex: today is gonna be a great day"
+          />
+        </mat-form-field>
+        <button
+          [disabled]="!messageFormControl.valid"
+          mat-raised-button
+          color="primary"
+          (click)="sendMessage()"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
