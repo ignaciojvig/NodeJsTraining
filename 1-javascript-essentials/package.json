@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ignaciojvig/NodeJsTraining#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "rxjs": "^6.5.4"
   }
 }
